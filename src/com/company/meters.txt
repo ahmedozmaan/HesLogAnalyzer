@@ -1,0 +1,185 @@
+// CLE3541800091660    CLE1541800124340    CLE1541800134160
+====================================== [Thread-75841] ================================
+2019-07-27 09:44:22,863 [Thread-75841] INFO  c.s.a.dlms.ExecutorThread - ExecutorThread Run Reply Data: 00 01 00 01 00 01 00 29 0F 00 00 00 00 0C 07 E3 07 1B 06 09 2C 14 FF 80 00 00 02 02 09 10 43 4C 45 33 35 34 31 38 30 30 30 39 31 36 36 30 12 00 AD
+2019-07-27 09:44:22,863 [Thread-75841] INFO  c.s.a.dlms.ExecutorThread - Alert: C:173 D:Sat Jul 27 09:44:20 EAT 2019 S:CLE3541800091660 T:SMS
+2019-07-27 09:44:22,869 [Thread-75841] INFO  c.s.a.dlms.ExecutorThread - ActionLog log size: 2
+2019-07-27 09:44:22,869 [Thread-75841] INFO  c.s.a.dlms.ExecutorThread - LOGIN TO Meter: CLE3541800091660
+2019-07-27 09:44:24,062 [Thread-75841] INFO  c.s.a.dlms.ExecutorThread - EXECUTING ACTION TO  Meter: CLE3541800091660 ACTION TYPE: STATE:TAMPER
+2019-07-27 09:44:24,402 [Thread-75841] ERROR c.s.a.dlms.Communication - Exception StackTrace:gurux.dlms.GXDLMSException: Access Error : Other Reason.
+2019-07-27 09:44:24,402 [Thread-75841] INFO  c.s.a.e.StateExecutor - Meter status: online: true power: false serialNo: CLE3541800091660 hesId: 1
+2019-07-27 09:44:24,406 [Thread-75841] ERROR c.s.a.dlms.ExecutorThread - Exception StackTrace:java.lang.Exception: Unable to perform actionLog: TAMPER
+2019-07-27 09:44:24,441 [Thread-75841] INFO  c.s.a.dlms.ExecutorThread - EXECUTING ACTION TO  Meter: CLE3541800091660 ACTION TYPE: STATE:CONNECT
+2019-07-27 09:44:25,182 [Thread-75841] ERROR c.s.a.dlms.Communication - Exception Reconnect: Access Error : Other Reason.
+2019-07-27 09:44:25,182 [Thread-75841] INFO  c.s.a.e.StateExecutor - Meter status: online: true power: false serialNo: CLE3541800091660 hesId: 1
+2019-07-27 09:44:25,195 [Thread-75841] ERROR c.s.a.dlms.ExecutorThread - Exception StackTrace:java.lang.Exception: Unable to perform actionLog: CONNECT
+2019-07-27 09:44:25,230 [Thread-75841] INFO  c.s.a.dlms.ExecutorThread - EXECUTOR THREAD EXIT
+2019-07-27 09:44:25,230 [Thread-75841] INFO  c.s.a.dlms.ExecutorThread - Found socket index:13
+====================================== [Thread-75857] ================================
+2019-07-27 09:48:57,047 [Thread-75857] INFO  c.s.a.dlms.ExecutorThread - ExecutorThread Run Reply Data: 00 01 00 01 00 01 00 29 0F 00 00 00 00 0C 07 E3 07 1B 06 09 30 32 FF 80 00 00 02 02 09 10 43 4C 45 33 35 34 31 38 30 30 30 39 31 36 36 30 12 00 AD
+2019-07-27 09:48:57,048 [Thread-75857] INFO  c.s.a.dlms.ExecutorThread - Alert: C:173 D:Sat Jul 27 09:48:50 EAT 2019 S:CLE3541800091660 T:SMS
+2019-07-27 09:48:57,054 [Thread-75857] INFO  c.s.a.dlms.ExecutorThread - ActionLog log size: 2
+2019-07-27 09:48:57,054 [Thread-75857] INFO  c.s.a.dlms.ExecutorThread - LOGIN TO Meter: CLE3541800091660
+2019-07-27 09:48:58,088 [Thread-75857] INFO  c.s.a.dlms.ExecutorThread - EXECUTING ACTION TO  Meter: CLE3541800091660 ACTION TYPE: STATE:TAMPER
+2019-07-27 09:48:58,408 [Thread-75857] ERROR c.s.a.dlms.Communication - Exception StackTrace:gurux.dlms.GXDLMSException: Access Error : Other Reason.
+2019-07-27 09:48:58,409 [Thread-75857] INFO  c.s.a.e.StateExecutor - Meter status: online: true power: false serialNo: CLE3541800091660 hesId: 1
+2019-07-27 09:48:58,412 [Thread-75857] ERROR c.s.a.dlms.ExecutorThread - Exception StackTrace:java.lang.Exception: Unable to perform actionLog: TAMPER
+2019-07-27 09:48:58,445 [Thread-75857] INFO  c.s.a.dlms.ExecutorThread - EXECUTING ACTION TO  Meter: CLE3541800091660 ACTION TYPE: STATE:CONNECT
+2019-07-27 09:48:59,087 [Thread-75857] ERROR c.s.a.dlms.Communication - Exception Reconnect: Access Error : Other Reason.
+2019-07-27 09:48:59,087 [Thread-75857] INFO  c.s.a.e.StateExecutor - Meter status: online: true power: false serialNo: CLE3541800091660 hesId: 1
+2019-07-27 09:48:59,091 [Thread-75857] ERROR c.s.a.dlms.ExecutorThread - Exception StackTrace:java.lang.Exception: Unable to perform actionLog: CONNECT
+2019-07-27 09:48:59,107 [Thread-75857] INFO  c.s.a.dlms.ExecutorThread - EXECUTOR THREAD EXIT
+2019-07-27 09:48:59,107 [Thread-75857] INFO  c.s.a.dlms.ExecutorThread - Found socket index:13
+====================================== [Thread-75950] ================================
+2019-07-27 10:08:59,604 [Thread-75950] INFO  c.s.a.dlms.ExecutorThread - ExecutorThread Run Reply Data: 00 01 00 01 00 01 00 29 0F 00 00 00 00 0C 07 E3 07 1B 06 0A 08 32 FF 80 00 00 02 02 09 10 43 4C 45 33 35 34 31 38 30 30 30 39 31 36 36 30 12 00 AD
+2019-07-27 10:08:59,604 [Thread-75950] INFO  c.s.a.dlms.ExecutorThread - Alert: C:173 D:Sat Jul 27 10:08:50 EAT 2019 S:CLE3541800091660 T:SMS
+2019-07-27 10:08:59,615 [Thread-75950] INFO  c.s.a.dlms.ExecutorThread - ActionLog log size: 1
+2019-07-27 10:08:59,615 [Thread-75950] INFO  c.s.a.dlms.ExecutorThread - LOGIN TO Meter: CLE3541800091660
+2019-07-27 10:09:00,644 [Thread-75950] INFO  c.s.a.dlms.ExecutorThread - READING DATA FROM  Meter: CLE3541800091660 ACTION TYPE: DATA:MONTHLY
+2019-07-27 10:09:12,622 [Thread-75950] ERROR c.s.a.dlms.ExecutorThread - Exception StackTrace:gurux.dlms.GXDLMSException: Access Error : Other Reason.
+====================================== [Thread-75951] ================================
+2019-07-27 10:09:00,208 [Thread-75951] INFO  c.s.a.dlms.ExecutorThread - ExecutorThread Run Reply Data: 00 01 00 01 00 01 00 29 0F 00 00 00 00 0C 07 E3 07 1B 06 0A 08 38 FF 80 00 00 02 02 09 10 43 4C 45 31 35 34 31 38 30 30 31 32 34 33 34 30 12 00 AD
+2019-07-27 10:09:00,208 [Thread-75951] INFO  c.s.a.dlms.ExecutorThread - Alert: C:173 D:Sat Jul 27 10:08:56 EAT 2019 S:CLE1541800124340 T:SMS
+2019-07-27 10:09:00,214 [Thread-75951] INFO  c.s.a.dlms.ExecutorThread - ActionLog log size: 1
+2019-07-27 10:09:00,214 [Thread-75951] INFO  c.s.a.dlms.ExecutorThread - LOGIN TO Meter: CLE1541800124340
+2019-07-27 10:09:01,870 [Thread-75951] INFO  c.s.a.dlms.ExecutorThread - READING DATA FROM  Meter: CLE1541800124340 ACTION TYPE: DATA:MONTHLY
+2019-07-27 10:09:42,810 [Thread-75951] INFO  c.s.a.dlms.Communication - Data send failed. Try to resend 1/3
+2019-07-27 10:09:46,214 [Thread-75951] ERROR c.s.a.dlms.ExecutorThread - Exception StackTrace:gurux.dlms.GXDLMSException: Access Error : Other Reason.
+====================================== [Thread-75970] ================================
+2019-07-27 10:13:59,375 [Thread-75970] INFO  c.s.a.dlms.ExecutorThread - ExecutorThread Run Reply Data: 00 01 00 01 00 01 00 29 0F 00 00 00 00 0C 07 E3 07 1B 06 0A 0D 32 FF 80 00 00 02 02 09 10 43 4C 45 33 35 34 31 38 30 30 30 39 31 36 36 30 12 00 AD
+2019-07-27 10:13:59,375 [Thread-75970] INFO  c.s.a.dlms.ExecutorThread - Alert: C:173 D:Sat Jul 27 10:13:50 EAT 2019 S:CLE3541800091660 T:SMS
+2019-07-27 10:13:59,381 [Thread-75970] INFO  c.s.a.dlms.ExecutorThread - ActionLog log size: 1
+2019-07-27 10:13:59,381 [Thread-75970] INFO  c.s.a.dlms.ExecutorThread - LOGIN TO Meter: CLE3541800091660
+2019-07-27 10:14:00,575 [Thread-75970] INFO  c.s.a.dlms.ExecutorThread - READING DATA FROM  Meter: CLE3541800091660 ACTION TYPE: DATA:MONTHLY
+2019-07-27 10:14:13,055 [Thread-75970] ERROR c.s.a.dlms.ExecutorThread - Exception StackTrace:gurux.dlms.GXDLMSException: Access Error : Other Reason.
+====================================== [Thread-75968] ================================
+2019-07-27 10:13:54,922 [Thread-75968] INFO  c.s.a.dlms.ExecutorThread - ExecutorThread Run Reply Data: 00 01 00 01 00 01 00 29 0F 00 00 00 00 0C 07 E3 07 1B 06 0A 0D 34 FF 80 00 00 02 02 09 10 43 4C 45 31 35 34 31 38 30 30 31 33 34 31 36 30 12 00 AD
+2019-07-27 10:13:54,922 [Thread-75968] INFO  c.s.a.dlms.ExecutorThread - Alert: C:173 D:Sat Jul 27 10:13:52 EAT 2019 S:CLE1541800134160 T:SMS
+2019-07-27 10:13:54,927 [Thread-75968] INFO  c.s.a.dlms.ExecutorThread - ActionLog log size: 1
+2019-07-27 10:13:54,927 [Thread-75968] INFO  c.s.a.dlms.ExecutorThread - LOGIN TO Meter: CLE1541800134160
+2019-07-27 10:13:56,551 [Thread-75968] INFO  c.s.a.dlms.ExecutorThread - READING DATA FROM  Meter: CLE1541800134160 ACTION TYPE: DATA:MONTHLY
+2019-07-27 10:14:32,851 [Thread-75968] INFO  c.s.a.dlms.Communication - Data send failed. Try to resend 1/3
+2019-07-27 10:15:10,485 [Thread-75968] ERROR c.s.a.dlms.ExecutorThread - Exception StackTrace:gurux.dlms.GXDLMSException: Access Error : Other Reason.
+====================================== [Thread-75967] ================================
+2019-07-27 10:13:54,459 [Thread-75967] INFO  c.s.a.dlms.ExecutorThread - ExecutorThread Run Reply Data: 00 01 00 01 00 01 00 29 0F 00 00 00 00 0C 07 E3 07 1B 06 0A 0D 32 FF 80 00 00 02 02 09 10 43 4C 45 31 35 34 31 38 30 30 31 32 34 33 34 30 12 00 AD
+2019-07-27 10:13:54,459 [Thread-75967] INFO  c.s.a.dlms.ExecutorThread - Alert: C:173 D:Sat Jul 27 10:13:50 EAT 2019 S:CLE1541800124340 T:SMS
+2019-07-27 10:13:54,465 [Thread-75967] INFO  c.s.a.dlms.ExecutorThread - ActionLog log size: 1
+2019-07-27 10:13:54,465 [Thread-75967] INFO  c.s.a.dlms.ExecutorThread - LOGIN TO Meter: CLE1541800124340
+2019-07-27 10:13:56,322 [Thread-75967] INFO  c.s.a.dlms.ExecutorThread - READING DATA FROM  Meter: CLE1541800124340 ACTION TYPE: DATA:MONTHLY
+2019-07-27 10:14:32,008 [Thread-75967] INFO  c.s.a.dlms.Communication - Data send failed. Try to resend 1/3
+2019-07-27 10:15:40,919 [Thread-75967] ERROR c.s.a.dlms.ExecutorThread - Exception StackTrace:gurux.dlms.GXDLMSException: Access Error : Other Reason.
+====================================== [Thread-75992] ================================
+2019-07-27 10:18:54,439 [Thread-75992] INFO  c.s.a.dlms.ExecutorThread - ExecutorThread Run Reply Data: 00 01 00 01 00 01 00 29 0F 00 00 00 00 0C 07 E3 07 1B 06 0A 12 35 FF 80 00 00 02 02 09 10 43 4C 45 31 35 34 31 38 30 30 31 33 34 31 36 30 12 00 AD
+2019-07-27 10:18:54,439 [Thread-75992] INFO  c.s.a.dlms.ExecutorThread - Alert: C:173 D:Sat Jul 27 10:18:53 EAT 2019 S:CLE1541800134160 T:SMS
+2019-07-27 10:18:54,445 [Thread-75992] INFO  c.s.a.dlms.ExecutorThread - ActionLog log size: 1
+2019-07-27 10:18:54,445 [Thread-75992] INFO  c.s.a.dlms.ExecutorThread - LOGIN TO Meter: CLE1541800134160
+2019-07-27 10:18:56,029 [Thread-75992] INFO  c.s.a.dlms.ExecutorThread - READING DATA FROM  Meter: CLE1541800134160 ACTION TYPE: DATA:MONTHLY
+2019-07-27 10:19:34,042 [Thread-75992] INFO  c.s.a.dlms.Communication - Data send failed. Try to resend 1/3
+2019-07-27 10:20:09,612 [Thread-75992] ERROR c.s.a.dlms.ExecutorThread - Exception StackTrace:gurux.dlms.GXDLMSException: Access Error : Other Reason.
+====================================== [Thread-76079] ================================
+2019-07-27 10:38:54,979 [Thread-76079] INFO  c.s.a.dlms.ExecutorThread - ExecutorThread Run Reply Data: 00 01 00 01 00 01 00 29 0F 00 00 00 00 0C 07 E3 07 1B 06 0A 26 35 FF 80 00 00 02 02 09 10 43 4C 45 31 35 34 31 38 30 30 31 33 34 31 36 30 12 00 AD
+2019-07-27 10:38:54,979 [Thread-76079] INFO  c.s.a.dlms.ExecutorThread - Alert: C:173 D:Sat Jul 27 10:38:53 EAT 2019 S:CLE1541800134160 T:SMS
+2019-07-27 10:38:54,985 [Thread-76079] INFO  c.s.a.dlms.ExecutorThread - ActionLog log size: 1
+2019-07-27 10:38:54,985 [Thread-76079] INFO  c.s.a.dlms.ExecutorThread - LOGIN TO Meter: CLE1541800134160
+2019-07-27 10:38:56,769 [Thread-76079] INFO  c.s.a.dlms.ExecutorThread - READING DATA FROM  Meter: CLE1541800134160 ACTION TYPE: DATA:MONTHLY
+2019-07-27 10:39:32,106 [Thread-76079] INFO  c.s.a.dlms.Communication - Data send failed. Try to resend 1/3
+2019-07-27 10:40:10,279 [Thread-76079] ERROR c.s.a.dlms.ExecutorThread - Exception StackTrace:gurux.dlms.GXDLMSException: Access Error : Other Reason.
+====================================== [Thread-76097] ================================
+2019-07-27 10:43:54,731 [Thread-76097] INFO  c.s.a.dlms.ExecutorThread - ExecutorThread Run Reply Data: 00 01 00 01 00 01 00 29 0F 00 00 00 00 0C 07 E3 07 1B 06 0A 2B 34 FF 80 00 00 02 02 09 10 43 4C 45 31 35 34 31 38 30 30 31 33 34 31 36 30 12 00 AD
+2019-07-27 10:43:54,731 [Thread-76097] INFO  c.s.a.dlms.ExecutorThread - Alert: C:173 D:Sat Jul 27 10:43:52 EAT 2019 S:CLE1541800134160 T:SMS
+2019-07-27 10:43:54,736 [Thread-76097] INFO  c.s.a.dlms.ExecutorThread - ActionLog log size: 1
+2019-07-27 10:43:54,736 [Thread-76097] INFO  c.s.a.dlms.ExecutorThread - LOGIN TO Meter: CLE1541800134160
+2019-07-27 10:43:56,487 [Thread-76097] INFO  c.s.a.dlms.ExecutorThread - READING DATA FROM  Meter: CLE1541800134160 ACTION TYPE: DATA:MONTHLY
+2019-07-27 10:45:40,578 [Thread-76097] ERROR c.s.a.dlms.ExecutorThread - Exception StackTrace:gurux.dlms.GXDLMSException: Access Error : Other Reason.
+====================================== [Thread-76165] ================================
+2019-07-27 10:59:00,162 [Thread-76165] INFO  c.s.a.dlms.ExecutorThread - ExecutorThread Run Reply Data: 00 01 00 01 00 01 00 29 0F 00 00 00 00 0C 07 E3 07 1B 06 0A 3A 33 FF 80 00 00 02 02 09 10 43 4C 45 33 35 34 31 38 30 30 30 39 31 36 36 30 12 00 AD
+2019-07-27 10:59:00,163 [Thread-76165] INFO  c.s.a.dlms.ExecutorThread - Alert: C:173 D:Sat Jul 27 10:58:51 EAT 2019 S:CLE3541800091660 T:SMS
+2019-07-27 10:59:00,168 [Thread-76165] INFO  c.s.a.dlms.ExecutorThread - ActionLog log size: 1
+2019-07-27 10:59:00,169 [Thread-76165] INFO  c.s.a.dlms.ExecutorThread - LOGIN TO Meter: CLE3541800091660
+2019-07-27 10:59:01,262 [Thread-76165] INFO  c.s.a.dlms.ExecutorThread - READING DATA FROM  Meter: CLE3541800091660 ACTION TYPE: DATA:MONTHLY
+2019-07-27 10:59:13,200 [Thread-76165] ERROR c.s.a.dlms.ExecutorThread - Exception StackTrace:gurux.dlms.GXDLMSException: Access Error : Other Reason.
+2019-07-27 10:59:13,236 [Thread-76165] INFO  c.s.a.dlms.ExecutorThread - EXECUTOR THREAD EXIT
+2019-07-27 10:59:13,236 [Thread-76165] INFO  c.s.a.dlms.ExecutorThread - Found socket index:16
+====================================== [Thread-76163] ================================
+2019-07-27 10:58:55,210 [Thread-76163] INFO  c.s.a.dlms.ExecutorThread - ExecutorThread Run Reply Data: 00 01 00 01 00 01 00 29 0F 00 00 00 00 0C 07 E3 07 1B 06 0A 3A 33 FF 80 00 00 02 02 09 10 43 4C 45 31 35 34 31 38 30 30 31 32 34 33 34 30 12 00 AD
+2019-07-27 10:58:55,210 [Thread-76163] INFO  c.s.a.dlms.ExecutorThread - Alert: C:173 D:Sat Jul 27 10:58:51 EAT 2019 S:CLE1541800124340 T:SMS
+2019-07-27 10:58:55,216 [Thread-76163] INFO  c.s.a.dlms.ExecutorThread - ActionLog log size: 1
+2019-07-27 10:58:55,216 [Thread-76163] INFO  c.s.a.dlms.ExecutorThread - LOGIN TO Meter: CLE1541800124340
+2019-07-27 10:58:56,951 [Thread-76163] INFO  c.s.a.dlms.ExecutorThread - READING DATA FROM  Meter: CLE1541800124340 ACTION TYPE: DATA:MONTHLY
+2019-07-27 10:59:34,893 [Thread-76163] INFO  c.s.a.dlms.Communication - Data send failed. Try to resend 1/3
+2019-07-27 11:01:11,554 [Thread-76163] ERROR c.s.a.dlms.ExecutorThread - Exception StackTrace:gurux.dlms.GXDLMSException: Access Error : Other Reason.
+====================================== [Thread-76164] ================================
+2019-07-27 10:58:55,249 [Thread-76164] INFO  c.s.a.dlms.ExecutorThread - ExecutorThread Run Reply Data: 00 01 00 01 00 01 00 29 0F 00 00 00 00 0C 07 E3 07 1B 06 0A 3A 36 FF 80 00 00 02 02 09 10 43 4C 45 31 35 34 31 38 30 30 31 33 34 31 36 30 12 00 AD
+2019-07-27 10:58:55,250 [Thread-76164] INFO  c.s.a.dlms.ExecutorThread - Alert: C:173 D:Sat Jul 27 10:58:54 EAT 2019 S:CLE1541800134160 T:SMS
+2019-07-27 10:58:55,254 [Thread-76164] INFO  c.s.a.dlms.ExecutorThread - ActionLog log size: 1
+2019-07-27 10:58:55,254 [Thread-76164] INFO  c.s.a.dlms.ExecutorThread - LOGIN TO Meter: CLE1541800134160
+2019-07-27 10:58:56,889 [Thread-76164] INFO  c.s.a.dlms.ExecutorThread - READING DATA FROM  Meter: CLE1541800134160 ACTION TYPE: DATA:MONTHLY
+2019-07-27 10:59:28,295 [Thread-76164] INFO  c.s.a.dlms.Communication - Data send failed. Try to resend 1/3
+2019-07-27 11:01:42,202 [Thread-76164] ERROR c.s.a.dlms.ExecutorThread - Exception StackTrace:gurux.dlms.GXDLMSException: Access Error : Other Reason.
+====================================== [Thread-76189] ================================
+2019-07-27 11:03:59,672 [Thread-76189] INFO  c.s.a.dlms.ExecutorThread - ExecutorThread Run Reply Data: 00 01 00 01 00 01 00 29 0F 00 00 00 00 0C 07 E3 07 1B 06 0B 03 32 FF 80 00 00 02 02 09 10 43 4C 45 33 35 34 31 38 30 30 30 39 31 36 36 30 12 00 AD
+2019-07-27 11:03:59,673 [Thread-76189] INFO  c.s.a.dlms.ExecutorThread - Alert: C:173 D:Sat Jul 27 11:03:50 EAT 2019 S:CLE3541800091660 T:SMS
+2019-07-27 11:03:59,678 [Thread-76189] INFO  c.s.a.dlms.ExecutorThread - ActionLog log size: 1
+2019-07-27 11:03:59,679 [Thread-76189] INFO  c.s.a.dlms.ExecutorThread - LOGIN TO Meter: CLE3541800091660
+2019-07-27 11:04:00,873 [Thread-76189] INFO  c.s.a.dlms.ExecutorThread - READING DATA FROM  Meter: CLE3541800091660 ACTION TYPE: DATA:MONTHLY
+2019-07-27 11:04:13,414 [Thread-76189] ERROR c.s.a.dlms.ExecutorThread - Exception StackTrace:gurux.dlms.GXDLMSException: Access Error : Other Reason.
+====================================== [Thread-76188] ================================
+2019-07-27 11:03:55,206 [Thread-76188] INFO  c.s.a.dlms.ExecutorThread - ExecutorThread Run Reply Data: 00 01 00 01 00 01 00 29 0F 00 00 00 00 0C 07 E3 07 1B 06 0B 03 36 FF 80 00 00 02 02 09 10 43 4C 45 31 35 34 31 38 30 30 31 33 34 31 36 30 12 00 AD
+2019-07-27 11:03:55,206 [Thread-76188] INFO  c.s.a.dlms.ExecutorThread - Alert: C:173 D:Sat Jul 27 11:03:54 EAT 2019 S:CLE1541800134160 T:SMS
+2019-07-27 11:03:55,210 [Thread-76188] INFO  c.s.a.dlms.ExecutorThread - ActionLog log size: 1
+2019-07-27 11:03:55,211 [Thread-76188] INFO  c.s.a.dlms.ExecutorThread - LOGIN TO Meter: CLE1541800134160
+2019-07-27 11:03:56,781 [Thread-76188] INFO  c.s.a.dlms.ExecutorThread - READING DATA FROM  Meter: CLE1541800134160 ACTION TYPE: DATA:MONTHLY
+2019-07-27 11:04:34,573 [Thread-76188] INFO  c.s.a.dlms.Communication - Data send failed. Try to resend 1/3
+2019-07-27 11:04:41,506 [Thread-76188] ERROR c.s.a.dlms.ExecutorThread - Exception StackTrace:gurux.dlms.GXDLMSException: Access Error : Other Reason.
+====================================== [Thread-76187] ================================
+2019-07-27 11:03:54,711 [Thread-76187] INFO  c.s.a.dlms.ExecutorThread - ExecutorThread Run Reply Data: 00 01 00 01 00 01 00 29 0F 00 00 00 00 0C 07 E3 07 1B 06 0B 03 32 FF 80 00 00 02 02 09 10 43 4C 45 31 35 34 31 38 30 30 31 32 34 33 34 30 12 00 AD
+2019-07-27 11:03:54,711 [Thread-76187] INFO  c.s.a.dlms.ExecutorThread - Alert: C:173 D:Sat Jul 27 11:03:50 EAT 2019 S:CLE1541800124340 T:SMS
+2019-07-27 11:03:54,717 [Thread-76187] INFO  c.s.a.dlms.ExecutorThread - ActionLog log size: 1
+2019-07-27 11:03:54,717 [Thread-76187] INFO  c.s.a.dlms.ExecutorThread - LOGIN TO Meter: CLE1541800124340
+2019-07-27 11:03:56,587 [Thread-76187] INFO  c.s.a.dlms.ExecutorThread - READING DATA FROM  Meter: CLE1541800124340 ACTION TYPE: DATA:MONTHLY
+2019-07-27 11:04:32,142 [Thread-76187] INFO  c.s.a.dlms.Communication - Data send failed. Try to resend 1/3
+2019-07-27 11:06:11,945 [Thread-76187] ERROR c.s.a.dlms.ExecutorThread - Exception StackTrace:gurux.dlms.GXDLMSException: Access Error : Other Reason.
+====================================== [Thread-76271] ================================
+2019-07-27 11:24:00,157 [Thread-76271] INFO  c.s.a.dlms.ExecutorThread - ExecutorThread Run Reply Data: 00 01 00 01 00 01 00 29 0F 00 00 00 00 0C 07 E3 07 1B 06 0B 17 33 FF 80 00 00 02 02 09 10 43 4C 45 33 35 34 31 38 30 30 30 39 31 36 36 30 12 00 AD
+2019-07-27 11:24:00,158 [Thread-76271] INFO  c.s.a.dlms.ExecutorThread - Alert: C:173 D:Sat Jul 27 11:23:51 EAT 2019 S:CLE3541800091660 T:SMS
+2019-07-27 11:24:00,164 [Thread-76271] INFO  c.s.a.dlms.ExecutorThread - ActionLog log size: 1
+2019-07-27 11:24:00,164 [Thread-76271] INFO  c.s.a.dlms.ExecutorThread - LOGIN TO Meter: CLE3541800091660
+2019-07-27 11:24:01,358 [Thread-76271] INFO  c.s.a.dlms.ExecutorThread - READING DATA FROM  Meter: CLE3541800091660 ACTION TYPE: DATA:MONTHLY
+2019-07-27 11:24:13,396 [Thread-76271] ERROR c.s.a.dlms.ExecutorThread - Exception StackTrace:gurux.dlms.GXDLMSException: Access Error : Other Reason.
+====================================== [Thread-76268] ================================
+2019-07-27 11:23:56,024 [Thread-76268] INFO  c.s.a.dlms.ExecutorThread - ExecutorThread Run Reply Data: 00 01 00 01 00 01 00 29 0F 00 00 00 00 0C 07 E3 07 1B 06 0B 17 34 FF 80 00 00 02 02 09 10 43 4C 45 31 35 34 31 38 30 30 31 32 34 33 34 30 12 00 AD
+2019-07-27 11:23:56,024 [Thread-76268] INFO  c.s.a.dlms.ExecutorThread - Alert: C:173 D:Sat Jul 27 11:23:52 EAT 2019 S:CLE1541800124340 T:SMS
+2019-07-27 11:23:56,029 [Thread-76268] INFO  c.s.a.dlms.ExecutorThread - ActionLog log size: 1
+2019-07-27 11:23:56,029 [Thread-76268] INFO  c.s.a.dlms.ExecutorThread - LOGIN TO Meter: CLE1541800124340
+2019-07-27 11:23:57,691 [Thread-76268] INFO  c.s.a.dlms.ExecutorThread - READING DATA FROM  Meter: CLE1541800124340 ACTION TYPE: DATA:MONTHLY
+2019-07-27 11:26:12,357 [Thread-76268] ERROR c.s.a.dlms.ExecutorThread - Exception StackTrace:gurux.dlms.GXDLMSException: Access Error : Other Reason.
+====================================== [Thread-76269] ================================
+2019-07-27 11:23:55,999 [Thread-76269] INFO  c.s.a.dlms.ExecutorThread - ExecutorThread Run Reply Data: 00 01 00 01 00 01 00 29 0F 00 00 00 00 0C 07 E3 07 1B 06 0B 17 36 FF 80 00 00 02 02 09 10 43 4C 45 31 35 34 31 38 30 30 31 33 34 31 36 30 12 00 AD
+2019-07-27 11:23:55,999 [Thread-76269] INFO  c.s.a.dlms.ExecutorThread - Alert: C:173 D:Sat Jul 27 11:23:54 EAT 2019 S:CLE1541800134160 T:SMS
+2019-07-27 11:23:56,004 [Thread-76269] INFO  c.s.a.dlms.ExecutorThread - ActionLog log size: 1
+2019-07-27 11:23:56,004 [Thread-76269] INFO  c.s.a.dlms.ExecutorThread - LOGIN TO Meter: CLE1541800134160
+2019-07-27 11:23:57,872 [Thread-76269] INFO  c.s.a.dlms.ExecutorThread - READING DATA FROM  Meter: CLE1541800134160 ACTION TYPE: DATA:MONTHLY
+2019-07-27 11:26:42,702 [Thread-76269] ERROR c.s.a.dlms.ExecutorThread - Exception StackTrace:gurux.dlms.GXDLMSException: Access Error : Other Reason.
+====================================== [Thread-76297] ================================
+2019-07-27 11:28:55,590 [Thread-76297] INFO  c.s.a.dlms.ExecutorThread - ExecutorThread Run Reply Data: 00 01 00 01 00 01 00 29 0F 00 00 00 00 0C 07 E3 07 1B 06 0B 1C 36 FF 80 00 00 02 02 09 10 43 4C 45 31 35 34 31 38 30 30 31 33 34 31 36 30 12 00 AD
+2019-07-27 11:28:55,590 [Thread-76297] INFO  c.s.a.dlms.ExecutorThread - Alert: C:173 D:Sat Jul 27 11:28:54 EAT 2019 S:CLE1541800134160 T:SMS
+2019-07-27 11:28:55,593 [Thread-76297] INFO  c.s.a.dlms.ExecutorThread - ActionLog log size: 1
+2019-07-27 11:28:55,593 [Thread-76297] INFO  c.s.a.dlms.ExecutorThread - LOGIN TO Meter: CLE1541800134160
+2019-07-27 11:28:57,273 [Thread-76297] INFO  c.s.a.dlms.ExecutorThread - READING DATA FROM  Meter: CLE1541800134160 ACTION TYPE: DATA:MONTHLY
+2019-07-27 11:29:12,316 [Thread-76297] ERROR c.s.a.dlms.ExecutorThread - Exception StackTrace:gurux.dlms.GXDLMSException: Access Error : Other Reason.
+====================================== [Thread-76299] ================================
+2019-07-27 11:29:00,607 [Thread-76299] INFO  c.s.a.dlms.ExecutorThread - ExecutorThread Run Reply Data: 00 01 00 01 00 01 00 29 0F 00 00 00 00 0C 07 E3 07 1B 06 0B 1C 33 FF 80 00 00 02 02 09 10 43 4C 45 33 35 34 31 38 30 30 30 39 31 36 36 30 12 00 AD
+2019-07-27 11:29:00,608 [Thread-76299] INFO  c.s.a.dlms.ExecutorThread - Alert: C:173 D:Sat Jul 27 11:28:51 EAT 2019 S:CLE3541800091660 T:SMS
+2019-07-27 11:29:00,612 [Thread-76299] INFO  c.s.a.dlms.ExecutorThread - ActionLog log size: 1
+2019-07-27 11:29:00,612 [Thread-76299] INFO  c.s.a.dlms.ExecutorThread - LOGIN TO Meter: CLE3541800091660
+2019-07-27 11:29:02,008 [Thread-76299] INFO  c.s.a.dlms.ExecutorThread - READING DATA FROM  Meter: CLE3541800091660 ACTION TYPE: DATA:MONTHLY
+2019-07-27 11:29:39,233 [Thread-76299] INFO  c.s.a.dlms.Communication - Data send failed. Try to resend 1/3
+2019-07-27 11:30:50,468 [Thread-76299] ERROR c.s.a.dlms.ExecutorThread - Exception StackTrace:gurux.dlms.GXDLMSException: Access Error : Other Reason.
+====================================== [Thread-76296] ================================
+2019-07-27 11:28:55,541 [Thread-76296] INFO  c.s.a.dlms.ExecutorThread - ExecutorThread Run Reply Data: 00 01 00 01 00 01 00 29 0F 00 00 00 00 0C 07 E3 07 1B 06 0B 1C 34 FF 80 00 00 02 02 09 10 43 4C 45 31 35 34 31 38 30 30 31 32 34 33 34 30 12 00 AD
+2019-07-27 11:28:55,542 [Thread-76296] INFO  c.s.a.dlms.ExecutorThread - Alert: C:173 D:Sat Jul 27 11:28:52 EAT 2019 S:CLE1541800124340 T:SMS
+2019-07-27 11:28:55,545 [Thread-76296] INFO  c.s.a.dlms.ExecutorThread - ActionLog log size: 1
+2019-07-27 11:28:55,545 [Thread-76296] INFO  c.s.a.dlms.ExecutorThread - LOGIN TO Meter: CLE1541800124340
+2019-07-27 11:28:57,106 [Thread-76296] INFO  c.s.a.dlms.ExecutorThread - READING DATA FROM  Meter: CLE1541800124340 ACTION TYPE: DATA:MONTHLY
+2019-07-27 11:31:11,750 [Thread-76296] ERROR c.s.a.dlms.ExecutorThread - Exception StackTrace:gurux.dlms.GXDLMSException: Access Error : Other Reason.
+
+Process finished with exit code 0

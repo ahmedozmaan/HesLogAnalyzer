@@ -1,0 +1,409 @@
+package com.safarifone.amisms.util;
+
+import com.safarifone.amisms.database.models.MeterData;
+import com.safarifone.amisms.database.models.ParamObjects;
+import com.safarifone.amisms.database.models.Unit;
+import com.safarifone.amisms.dlms.Client;
+import com.safarifone.amisms.dlms.Communication;
+import gurux.dlms.GXByteBuffer;
+import gurux.dlms.GXDateTime;
+import gurux.dlms.GXReplyData;
+import gurux.dlms.enums.DataType;
+import gurux.dlms.objects.*;
+
+import java.io.PrintWriter;
+import java.io.StringWriter;
+import java.util.*;
+
+public class Demo {
+    static Map<Integer, Unit> unitDefinitions = new HashMap<Integer, Unit>();
+    static HashMap<String, ParamObjects> objectsDefinitions = new HashMap<>();
+    static GXDLMSDisconnectControl disconnectControl = new GXDLMSDisconnectControl("0.0.96.3.10.255");
+
+    public static void main(String[] args) {
+        unitDefinitions.put(1, new Unit(1, "a", "time", "year", "52*7*24*60*60 s"));
+        unitDefinitions.put(2, new Unit(2, "mo", "time", "month", "31*24*60*60 s"));
+        unitDefinitions.put(3, new Unit(3, "wk", "time", "week", "7*24*6*60 s"));
+        unitDefinitions.put(4, new Unit(4, "d", "time", "day", "24*60*60 s"));
+        unitDefinitions.put(5, new Unit(5, "h", "time	", "hour", "60*60 s"));
+        unitDefinitions.put(6, new Unit(6, "min.", "time", "min", "60 s"));
+        unitDefinitions.put(7, new Unit(7, "s", "time (t)", "second", "s"));
+        unitDefinitions.put(8, new Unit(8, "°", "(phase) angle", "degree", "rad*180/π"));
+        unitDefinitions.put(9, new Unit(9, "°C", "temperature (T)	", "degree celsius", "	K-273.15"));
+        unitDefinitions.put(10, new Unit(10, "currency", "(local) currency", null, null));
+        unitDefinitions.put(11, new Unit(11, "m", "length (l)", "metre", "m"));
+        unitDefinitions.put(12, new Unit(12, "m/s", "speed (v)", "metre per second", "m/s"));
+        unitDefinitions.put(13, new Unit(13, "m³", "volume (V)", "cubic metre", "m³"));
+        unitDefinitions.put(14, new Unit(14, "m³", "corrected volume", "cubic metre", "m³"));
+        unitDefinitions.put(15, new Unit(15, "m³/h", "volume flux", "cubic metre per hour", "m³/(60*60s)"));
+        unitDefinitions.put(16, new Unit(16, "m³/h", "corrected volume flux", "cubic metre per hour", "m³/(60*60s)"));
+        unitDefinitions.put(17, new Unit(17, "m³/d", "volume flux", null, "m³/(24*60*60s)"));
+        unitDefinitions.put(18, new Unit(18, "m³/d", "corrected volume flux", null, "	m³/(24*60*60s)"));
+        unitDefinitions.put(19, new Unit(19, "l", "volume", "litre", "10-3 m³"));
+        unitDefinitions.put(20, new Unit(20, "kg", "mass (m)", "kilogram", "1000g"));
+        unitDefinitions.put(21, new Unit(21, "N", "force (F)", "newton", "N"));
+        unitDefinitions.put(22, new Unit(22, "Nm", "energy", "newtonmeter", "J = Nm = Ws"));
+        unitDefinitions.put(23, new Unit(23, "Pa", "pressure (p)", "pascal", "N/m²"));
+        unitDefinitions.put(24, new Unit(24, "bar", "pressure (p)", "bar", "10⁵ N/m²"));
+        unitDefinitions.put(25, new Unit(25, "J", "energy", "joule", "J = Nm = Ws"));
+        unitDefinitions.put(26, new Unit(26, "J/h", "thermal power", "joule per hour", "J/(60*60s)"));
+        unitDefinitions.put(27, new Unit(27, "W", "active power (P)", "watt", "W = J/s"));
+        unitDefinitions.put(28, new Unit(28, "VA", "apparent power (S)", "volt-ampere", null));
+        unitDefinitions.put(29, new Unit(29, "var", "reactive power (Q)", "var", null));
+        unitDefinitions.put(30, new Unit(30, "Wh", "active energy", "watt-hour", "W*(60*60s)"));
+        unitDefinitions.put(31, new Unit(31, "VAh", "apparent energy", "volt-ampere-hour", "VA*(60*60s)"));
+        unitDefinitions.put(32, new Unit(32, "varh", "reactive energy", "var-hour", "var*(60*60s)"));
+        unitDefinitions.put(33, new Unit(33, "A", "current (I)", "ampere", "A"));
+        unitDefinitions.put(34, new Unit(34, "C", "electrical charge (Q)", "coulomb", "C = As"));
+        unitDefinitions.put(35, new Unit(35, "V", "voltage (U)", "volt", "V"));
+        unitDefinitions.put(36, new Unit(36, "V/m", "electr. field strength (E)", "volt per metre", null));
+        unitDefinitions.put(37, new Unit(37, "F", "capacitance (C)", "farad", "C/V = As/V"));
+        unitDefinitions.put(38, new Unit(38, "Ω", "resistance (R)", "ohm", "Ω = V/A"));
+        unitDefinitions.put(39, new Unit(39, "Ωm²/m", "resistivity (ρ)", "Ωm", null));
+        unitDefinitions.put(40, new Unit(40, "Wb", "magnetic flux (Φ)", "weber", "Wb = Vs"));
+        unitDefinitions.put(41, new Unit(41, "T", "magnetic flux density (B)	", "tesla", "Wb/m2"));
+        unitDefinitions.put(42, new Unit(42, "A/m", "magnetic field strength (H)", "ampere per metre", "A/m"));
+        unitDefinitions.put(43, new Unit(43, "H", "inductance (L)", "henry", "H = Wb/A"));
+        unitDefinitions.put(44, new Unit(44, "Hz", "frequency (f, ω)", "hertz", "1/s"));
+        unitDefinitions.put(46, new Unit(46, "1/(varh)", "R_B", "reactive energy meter constant or pulse value", null));
+        unitDefinitions.put(47, new Unit(47, "1/(VAh)", "R_S", "apparent energy meter constant or pulse value", null));
+        unitDefinitions.put(48, new Unit(48, "V²h", "volt-squared hour", "volt-squaredhours", "V²(60*60s)"));
+        unitDefinitions.put(49, new Unit(49, "A²h", "ampere-squared hour", "ampere-squaredhours", "A²(60*60s)"));
+        unitDefinitions.put(50, new Unit(50, "kg/s", "mass flux", "kilogram per second", "kg/s"));
+        unitDefinitions.put(51, new Unit(51, "S, mho", "conductance siemens", "", "1/Ω"));
+        unitDefinitions.put(52, new Unit(52, "K", "temperature (T)", "kelvin", null));
+        unitDefinitions.put(53, new Unit(53, "1/(V²h)", "R_U²h", "Volt-squared hour meter constant or pulse value", null));
+        unitDefinitions.put(54, new Unit(54, "1/(A²h)", "R_I²h", "Ampere-squared hour meter constant or pulse value", null));
+        unitDefinitions.put(55, new Unit(55, "1/m³", "R_V", "meter constant or pulse value (volume)", null));
+        unitDefinitions.put(56, new Unit(56, "%", "percentage", "%", null));
+        unitDefinitions.put(57, new Unit(57, "Ah", "ampere-hours", "ampere-hour", null));
+        unitDefinitions.put(58, new Unit(60, "Wh/m³", "energy per volume", "", "3,6*103 J/m³"));
+        unitDefinitions.put(59, new Unit(61, "J/m³", "calorific value", "wobbe", null));
+        unitDefinitions.put(60, new Unit(62, "Mol %", "molar fraction of", "mole percent", "(Basic gas composition unit)  gas composition  "));
+        unitDefinitions.put(61, new Unit(63, "g/m³", "mass density, quantity of material", "Gas analysis, accompanying elements", null));
+        unitDefinitions.put(62, new Unit(64, "Pa s", "dynamic viscosity pascal second", "Characteristic of gas stream", null));
+        unitDefinitions.put(253, new Unit(253, "reserved", "reserved", null, null));
+        unitDefinitions.put(254, new Unit(254, "other", "other unit", null, null));
+
+
+        objectsDefinitions.put("0.0.0.1.2.255", new ParamObjects("last_monthly_billing_date", "0.0.0.1.2.255", "0", "0", "0"));
+        objectsDefinitions.put("0.0.1.0.0.255", new ParamObjects("capture_time", "0.0.1.0.0.255", "0", "0", "0"));
+        objectsDefinitions.put("0.0.17.0.0.255", new ParamObjects("load_limit_threshold", "0.0.17.0.0.255", "0", "0", "0"));
+        objectsDefinitions.put("0.0.19.130.0.255", new ParamObjects("meter_balance", "0.0.19.130.0.255", "0", "0", "0"));
+        objectsDefinitions.put("0.0.19.130.2.255", new ParamObjects("total_purchase_credit", "0.0.19.130.2.255", "0", "0", "0"));
+        objectsDefinitions.put("0.0.19.131.0.255", new ParamObjects("total_consume_credit", "0.0.19.131.0.255", "0", "0", "0"));
+        objectsDefinitions.put("0.0.19.133.0.255", new ParamObjects("current_month_consume_credit", "0.0.19.133.0.255", "0", "0", "0"));
+        objectsDefinitions.put("0.0.19.134.0.255", new ParamObjects("current_day_consume_credit", "0.0.19.134.0.255", "0", "0", "0"));
+        objectsDefinitions.put("0.0.96.10.1.255", new ParamObjects("profile_status", "0.0.96.10.1.255", "0", "0", "0"));
+        objectsDefinitions.put("0.0.96.2.0.255", new ParamObjects("program_count", "0.0.96.2.0.255", "0", "0", "0"));
+        objectsDefinitions.put("0.0.96.3.10.255", new ParamObjects("output_state", "0.0.96.3.10.255", "0", "0", "0"));
+        objectsDefinitions.put("0.0.96.6.3.255", new ParamObjects("internal_battery_voltage", "0.0.96.6.3.255", "0", "0", "0"));
+        objectsDefinitions.put("0.0.96.7.0.255", new ParamObjects("power_down_count", "0.0.96.7.0.255", "0", "0", "0"));
+        objectsDefinitions.put("0.0.96.9.0.255", new ParamObjects("string temperature", "0.0.96.9.0.255", "0", "0", "0"));
+        objectsDefinitions.put("0.0.96.91.0.255", new ParamObjects("tamper_count", "0.0.96.91.0.255", "0", "0", "0"));
+        objectsDefinitions.put("0.0.96.91.14.255", new ParamObjects("power_on_duration", "0.0.96.91.14.255", "0", "0", "0"));
+        objectsDefinitions.put("0.0.96.91.8.255", new ParamObjects("cumulative_power_down_time", "0.0.96.91.8.255", "0", "0", "0"));
+        objectsDefinitions.put("0.1.96.50.0.255", new ParamObjects("meter_location", "0.1.96.50.0.255", "0", "0", "0"));
+        objectsDefinitions.put("0.1.96.6.3.255", new ParamObjects("external_battery_voltage", "0.1.96.6.3.255", "0", "0", "0"));
+        objectsDefinitions.put("1.0.0.1.0.255", new ParamObjects("billing_count", "1.0.0.1.0.255", "0", "0", "0"));
+        objectsDefinitions.put("1.0.1.29.0.255", new ParamObjects("block_import_active", "1.0.1.29.0.255", "1", "0", "1"));
+        objectsDefinitions.put("1.0.1.6.0.255", new ParamObjects("import_active_maximum_demand", "1.0.1.6.0.255", "0", "0", "0"));
+        objectsDefinitions.put("1.0.1.7.0.255", new ParamObjects("instantaneous_active_power_import", "1.0.1.7.0.255", "1", "0", "1"));
+        objectsDefinitions.put("1.0.1.8.0.255", new ParamObjects("total_import_active", "1.0.1.8.0.255", "1", "0", "1"));
+        objectsDefinitions.put("1.0.10.29.0.255", new ParamObjects("block_export_apparent", "1.0.10.29.0.255", "1", "0", "1"));
+        objectsDefinitions.put("1.0.10.6.0.255", new ParamObjects("export_apparent_maximum_demand", "1.0.10.6.0.255", "0", "0", "0"));
+        objectsDefinitions.put("1.0.10.7.0.255", new ParamObjects("instantaneous_apparent_power_export", "1.0.10.7.0.255", "1", "0", "1"));
+        objectsDefinitions.put("1.0.10.8.0.255", new ParamObjects("total_export_apparent", "1.0.10.8.0.255", "1", "0", "1"));
+        objectsDefinitions.put("1.0.13.0.0.255", new ParamObjects("billing_period_average_power_factor", "1.0.13.0.0.255", "0", "0", "0"));
+        objectsDefinitions.put("1.0.13.7.0.255", new ParamObjects("power_factor", "1.0.13.7.0.255", "0", "0", "0"));
+        objectsDefinitions.put("1.0.133.7.0.255", new ParamObjects("instant_reactive_power", "1.0.133.7.0.255", "0", "0", "1"));
+        objectsDefinitions.put("1.0.133.7.124.255", new ParamObjects("total_reactive_power_THD", "1.0.133.7.124.255", "0", "0", "0"));
+        objectsDefinitions.put("1.0.14.7.0.255", new ParamObjects("frequency", "1.0.14.7.0.255", "0", "0", "0"));
+        objectsDefinitions.put("1.0.143.7.0.255", new ParamObjects("unnamed_one", "1.0.143.7.0.255", "0", "0", "1"));
+        objectsDefinitions.put("1.0.15.19.0.255", new ParamObjects("active_increase", "1.0.15.19.0.255", "1", "0", "1"));
+        objectsDefinitions.put("1.0.15.2.0.255", new ParamObjects("cumulative_total_active_maximum_demand", "1.0.15.2.0.255", "0", "0", "0"));
+        objectsDefinitions.put("1.0.15.6.0.255", new ParamObjects("total_active_maximum_demand", "1.0.15.6.0.255", "0", "0", "0"));
+        objectsDefinitions.put("1.0.15.7.0.255", new ParamObjects("instantaneous_active_power", "1.0.15.7.0.255", "1", "0", "1"));
+        objectsDefinitions.put("1.0.15.7.124.255", new ParamObjects("Total_active_power_THD", "1.0.15.7.124.255", "0", "0", "0"));
+        objectsDefinitions.put("1.0.15.8.0.255", new ParamObjects("total_active", "1.0.15.8.0.255", "1", "0", "1"));
+        objectsDefinitions.put("1.0.15.9.0.255", new ParamObjects("month_active_increase", "1.0.15.9.0.255", "1", "0", "0"));
+        objectsDefinitions.put("1.0.153.7.0.255", new ParamObjects("unnamed_two", "1.0.153.7.0.255", "0", "0", "1"));
+        objectsDefinitions.put("1.0.163.7.0.255", new ParamObjects("unnamed_there", "1.0.163.7.0.255", "0", "0", "1"));
+        objectsDefinitions.put("1.0.2.29.0.255", new ParamObjects("block_export_active", "1.0.2.29.0.255", "1", "0", "1"));
+        objectsDefinitions.put("1.0.2.6.0.255", new ParamObjects("export_active_maximum_demand", "1.0.2.6.0.255", "0", "0", "0"));
+        objectsDefinitions.put("1.0.2.7.0.255", new ParamObjects("instantaneous_active_power_export", "1.0.2.7.0.255", "1", "0", "1"));
+        objectsDefinitions.put("1.0.2.8.0.255", new ParamObjects("export_active", "1.0.2.8.0.255", "1", "0", "1"));
+        objectsDefinitions.put("1.0.21.7.0.255", new ParamObjects("instantaneous_active_power_import_a", "1.0.21.7.0.255", "1", "0", "1"));
+        objectsDefinitions.put("1.0.22.7.0.255", new ParamObjects("instantaneous_active_power_export_a", "1.0.22.7.0.255", "1", "0", "1"));
+        objectsDefinitions.put("1.0.23.7.0.255", new ParamObjects("instantaneous_reactive_power_import_a", "1.0.23.7.0.255", "1", "0", "1"));
+        objectsDefinitions.put("1.0.23.7.124.255", new ParamObjects("L1_reactive_power_THD", "1.0.23.7.124.255", "0", "0", "0"));
+        objectsDefinitions.put("1.0.24.7.0.255", new ParamObjects("instantaneous_reactive_power_export_a", "1.0.24.7.0.255", "1", "0", "1"));
+        objectsDefinitions.put("1.0.29.7.0.255", new ParamObjects("instantaneous_apparent_power_import_a", "1.0.29.7.0.255", "1", "0", "1"));
+        objectsDefinitions.put("1.0.3.29.0.255", new ParamObjects("block_import_reactive", "1.0.3.29.0.255", "1", "0", "1"));
+        objectsDefinitions.put("1.0.3.7.0.255", new ParamObjects("instantaneous_reactive_power_import", "1.0.3.7.0.255", "1", "0", "1"));
+        objectsDefinitions.put("1.0.3.8.0.255", new ParamObjects("import_reactive", "1.0.3.8.0.255", "1", "0", "1"));
+        objectsDefinitions.put("1.0.30.7.0.255", new ParamObjects("instantaneous_apparent_power_export_a", "1.0.30.7.0.255", "1", "0", "1"));
+        objectsDefinitions.put("1.0.31.7.0.255", new ParamObjects("current_phase_one", "1.0.31.7.0.255", "0", "0", "1"));
+        objectsDefinitions.put("1.0.31.7.124.255", new ParamObjects("L1_current_THD", "1.0.31.7.124.255", "0", "0", "0"));
+        objectsDefinitions.put("1.0.32.7.0.255", new ParamObjects("voltage_phase_one", "1.0.32.7.0.255", "0", "0", "0"));
+        objectsDefinitions.put("1.0.32.7.124.255", new ParamObjects("L1_voltage_THD", "1.0.32.7.124.255", "0", "0", "0"));
+        objectsDefinitions.put("1.0.33.7.0.255", new ParamObjects("power_factor_phase_one", "1.0.33.7.0.255", "0", "0", "0"));
+        objectsDefinitions.put("1.0.35.7.0.255", new ParamObjects("instantaneous_active_power_a", "1.0.35.7.0.255", "1", "0", "1"));
+        objectsDefinitions.put("1.0.35.7.124.255", new ParamObjects("L1_active_power_THD", "1.0.35.7.124.255", "0", "0", "0"));
+        objectsDefinitions.put("1.0.4.29.0.255", new ParamObjects("block_export_reactive", "1.0.4.29.0.255", "1", "0", "1"));
+        objectsDefinitions.put("1.0.4.7.0.255", new ParamObjects("instantaneous_reactive_power_export", "1.0.4.7.0.255", "1", "0", "1"));
+        objectsDefinitions.put("1.0.4.8.0.255", new ParamObjects("export_reactive", "1.0.4.8.0.255", "1", "0", "1"));
+        objectsDefinitions.put("1.0.41.7.0.255", new ParamObjects("instantaneous_active_power_import_b", "1.0.41.7.0.255", "1", "0", "1"));
+        objectsDefinitions.put("1.0.42.7.0.255", new ParamObjects("instantaneous_active_power_export_b", "1.0.42.7.0.255", "1", "0", "1"));
+        objectsDefinitions.put("1.0.43.7.0.255", new ParamObjects("instantaneous_reactive_power_import_b", "1.0.43.7.0.255", "1", "0", "1"));
+        objectsDefinitions.put("1.0.43.7.124.255", new ParamObjects("L2_reactive_power_THD", "1.0.43.7.124.255", "0", "0", "0"));
+        objectsDefinitions.put("1.0.44.7.0.255", new ParamObjects("instantaneous_reactive_power_export_b", "1.0.44.7.0.255", "1", "0", "1"));
+        objectsDefinitions.put("1.0.49.7.0.255", new ParamObjects("instantaneous_apparent_power", "1.0.49.7.0.255", "1", "0", "1"));
+        objectsDefinitions.put("1.0.50.7.0.255", new ParamObjects("instantaneous_apparent_power_export_b", "1.0.50.7.0.255", "1", "0", "1"));
+        objectsDefinitions.put("1.0.51.7.0.255", new ParamObjects("current_phase_two", "1.0.51.7.0.255", "0", "0", "1"));
+        objectsDefinitions.put("1.0.51.7.124.255", new ParamObjects("L2_current_THD", "1.0.51.7.124.255", "0", "0", "0"));
+        objectsDefinitions.put("1.0.52.7.0.255", new ParamObjects("voltage_phase_two", "1.0.52.7.0.255", "0", "0", "0"));
+        objectsDefinitions.put("1.0.52.7.124.255", new ParamObjects("L2_voltage_THD", "1.0.52.7.124.255", "0", "0", "0"));
+        objectsDefinitions.put("1.0.53.7.0.255", new ParamObjects("power_factor_phase_two", "1.0.53.7.0.255", "0", "0", "0"));
+        objectsDefinitions.put("1.0.55.7.0.255", new ParamObjects("instantaneous_active_power_b", "1.0.55.7.0.255", "1", "0", "1"));
+        objectsDefinitions.put("1.0.55.7.124.255", new ParamObjects("L2_active_power_THD", "1.0.55.7.124.255", "0", "0", "0"));
+        objectsDefinitions.put("1.0.61.7.0.255", new ParamObjects("instantaneous_active_power_import_c", "1.0.61.7.0.255", "1", "0", "1"));
+        objectsDefinitions.put("1.0.62.7.0.255", new ParamObjects("instantaneous_active_power_export_c", "1.0.62.7.0.255", "1", "0", "1"));
+        objectsDefinitions.put("1.0.63.7.0.255", new ParamObjects("instantaneous_reactive_power_import_c", "1.0.63.7.0.255", "1", "0", "1"));
+        objectsDefinitions.put("1.0.63.7.124.255", new ParamObjects("L3_reactive_power_THD", "1.0.63.7.124.255", "0", "0", "0"));
+        objectsDefinitions.put("1.0.64.7.0.255", new ParamObjects("instantaneous_reactive_power_export_c", "1.0.64.7.0.255", "1", "0", "1"));
+        objectsDefinitions.put("1.0.69.7.0.255", new ParamObjects("instantaneous_apparent_power_import_c", "1.0.69.7.0.255", "1", "0", "1"));
+        objectsDefinitions.put("1.0.70.7.0.255", new ParamObjects("instantaneous_apparent_power_export_c", "1.0.70.7.0.255", "1", "0", "1"));
+        objectsDefinitions.put("1.0.71.7.0.255", new ParamObjects("current_phase_three", "1.0.71.7.0.255", "0", "0", "1"));
+        objectsDefinitions.put("1.0.71.7.124.255", new ParamObjects("L3_current_THD", "1.0.71.7.124.255", "0", "0", "0"));
+        objectsDefinitions.put("1.0.72.7.0.255", new ParamObjects("voltage_phase_three", "1.0.72.7.0.255", "0", "0", "0"));
+        objectsDefinitions.put("1.0.72.7.124.255", new ParamObjects("L3_voltage_THD", "1.0.72.7.124.255", "0", "0", "0"));
+        objectsDefinitions.put("1.0.73.7.0.255", new ParamObjects("power_factor_phase_three", "1.0.73.7.0.255", "0", "0", "0"));
+        objectsDefinitions.put("1.0.75.7.124.255", new ParamObjects("L3_active_power_THD", "1.0.75.7.124.255", "0", "0", "0"));
+        objectsDefinitions.put("1.0.81.7.1.255", new ParamObjects("angle_between_voltage_a", "1.0.81.7.1.255", "0", "0", "0"));
+        objectsDefinitions.put("1.0.81.7.12.255", new ParamObjects("angle_between_voltage_c", "1.0.81.7.12.255", "0", "0", "0"));
+        objectsDefinitions.put("1.0.81.7.15.255", new ParamObjects("angle_between_voltage_an_current", "1.0.81.7.15.255", "0", "0", "0"));
+        objectsDefinitions.put("1.0.81.7.2.255", new ParamObjects("angle_between_voltage_b", "1.0.81.7.2.255", "0", "0", "0"));
+        objectsDefinitions.put("1.0.81.7.26.255", new ParamObjects("angle_between_voltage_an_current", "1.0.81.7.26.255", "0", "0", "0"));
+        objectsDefinitions.put("1.0.81.7.4.255", new ParamObjects("angle_between_voltage_an_current", "1.0.81.7.4.255", "0", "0", "0"));
+        objectsDefinitions.put("1.0.9.29.0.255", new ParamObjects("block_import_apparent", "1.0.9.29.0.255", "1", "0", "1"));
+        objectsDefinitions.put("1.0.9.6.0.255", new ParamObjects("import_apparent_maximum_demand", "1.0.9.6.0.255", "0", "0", "0"));
+        objectsDefinitions.put("1.0.9.7.0.255", new ParamObjects("instantaneous_apparent_power_import", "1.0.9.7.0.255", "1", "0", "1"));
+        objectsDefinitions.put("1.0.9.8.0.255", new ParamObjects("total_import_apparent", "1.0.9.8.0.255", "1", "0", "1"));
+        objectsDefinitions.put("1.0.91.7.0.255", new ParamObjects("neutral", "1.0.91.7.0.255", "1", "0", "1"));
+
+        Client client = new Client();
+        try {
+            client.ConnectSerial();
+            //remoteDisconnect(client.communicate());
+            ///removeTamper(client.communicate());
+
+            GXDLMSProfileGeneric pg = client.communicate().readObjectsAndScale("1.0.99.1.0.255");
+            //read(client.communicate(), "DEMAND", "1.0.96.91.10.255");
+            //remoteReconnect(client.communicate());
+            //updateAPN(client.communicate(),"Kabax");
+
+        } catch (Exception ex) {
+            System.out.println(ex.toString());
+        } finally {
+            client.communicate().close();
+        }
+    }
+
+
+    private static Boolean remoteDisconnect(Communication communicate) {
+        try {
+            Object val = communicate.readObject(disconnectControl, 2);
+            if (!Boolean.valueOf(val.toString())) {
+                return true;
+            }
+            byte[][] db = disconnectControl.remoteDisconnect(communicate.dlms);
+            communicate.readDataBlock(db, new GXReplyData());
+            return true;
+        } catch (Exception ex) {
+            System.out.println("Exception Disconnect: " + ex.getMessage());
+        }
+        return false;
+    }
+
+
+    public static Boolean remoteReconnect(Communication communicate) {
+        try {
+            Object val = communicate.readObject(disconnectControl, 2);
+            if (Boolean.valueOf(val.toString())) {
+                return true;
+            }
+            byte[][] db = disconnectControl.remoteReconnect(communicate.dlms);
+            communicate.readDataBlock(db, new GXReplyData());
+            return true;
+
+        } catch (Exception ex) {
+            System.out.println("Exception Reconnect: " + ex.getMessage());
+        }
+        return false;
+    }
+
+
+    public static boolean updateAPN(Communication communicate, String apn) {
+        GXDLMSGprsSetup apnSetup = new GXDLMSGprsSetup("0.0.25.4.0.255");
+        try {
+            String apnData = (String) communicate.readObject(apnSetup, 2);
+            System.out.println(apnData);
+            apnSetup.setAPN(apn);
+            byte[][] apnResult = communicate.dlms.write(apnSetup, 2);
+            GXReplyData reply = new GXReplyData();
+            communicate.readDataBlock(apnResult, reply);
+            return true;
+        } catch (Exception e) {
+            StringWriter sw = new StringWriter();
+            e.printStackTrace(new PrintWriter(sw));
+            System.out.println("Exception StackTrace:" + sw.toString());
+            return false;
+        }
+    }
+
+    public static boolean removeTamper(Communication communicate) {
+
+        GXDLMSScriptTable gxdlmsScriptTable = new GXDLMSScriptTable("0.0.10.0.0.255");
+        GXByteBuffer bb = new GXByteBuffer();
+        bb.setUInt8(0x12);
+        bb.setUInt16(0x04);
+        byte[][] result = gxdlmsScriptTable.execute(communicate.dlms, bb.array(), DataType.UINT16);
+
+
+        try {
+            communicate.readDataBlock(result, new GXReplyData());
+            return true;
+        } catch (Exception e) {
+            e.printStackTrace();
+            StringWriter sw = new StringWriter();
+            e.printStackTrace(new PrintWriter(sw));
+            System.out.println("Exception StackTrace:" + sw.toString());
+            return false;
+        }
+
+    }
+
+
+    public static void read(Communication communicate, String type, String obis) throws Exception {
+
+
+        Date start = new Date();
+        Calendar end = Calendar.getInstance();
+        end.setTime(start);
+        end.add(Calendar.HOUR, -6);
+
+        double ct = 1;
+        double vt = 1;
+        long serial = 1234;
+        Boolean is_ct = false;
+        List<List<MeterData>> meterDataList = new ArrayList<>();
+        GXDLMSProfileGeneric pg = communicate.readObjectsAndScale(obis);
+
+        //Read actual data.
+        if (type.equals("DEMAND")) {
+            communicate.readObject(pg, 2);
+            //pg.setCapturePeriod(900);
+            //communicate.writeObject(pg, 2);
+
+            //GXDLMSRegister gxdlmsRegister = new GXDLMSRegister("1.0.1.8.0.255");
+            //pg.addCaptureObject(gxdlmsRegister,2,0);
+            byte[][] writeCaptureObject = communicate.dlms.write(pg, 3);
+            communicate.readDataBlock(writeCaptureObject, new GXReplyData());
+            System.out.println("0000000000000000000000000000000000000000000000000000000000000000000");
+
+
+
+        } else {
+            communicate.readRowsByRange(pg, end.getTime(), start);
+
+
+//            int i = 0;
+//            for (; i < pg.getCaptureObjects().size(); i++) {
+//                GXDLMSObject it = pg.getCaptureObjects().get(i).getKey();
+//                if (it instanceof GXDLMSRegister) {
+//                    break;
+//                }
+//            }
+//            GXDLMSObject it = pg.getCaptureObjects().get(i).getKey();
+//            it.setLogicalName("1.0.1.8.0.255");
+//            pg.addCaptureObject(it, 2, 0);
+//            communicate.writeObject(pg, 2);
+
+    /*if(actionLog.getType().contains("DAILY")) {
+        GXDLMSActionSchedule act1 = new GXDLMSActionSchedule("0.0.15.0.0.255");
+        Object obj4 = communication.readObject(act1, 4);
+        GXDateTime[] dt = (GXDateTime[]) obj4;
+        for (GXDateTime g : dt) {
+            log.info("Meter Calender Serial: " + meter.getSerialNo() + " Calender Date: " + g.getCalendar().getTime().toString());
+        }
+    }*/
+        }
+        for (Object o : pg.getBuffer()) {
+            List<MeterData> dataList = new ArrayList<>();
+            Date timeStamp = null;
+            Object[] item = (Object[]) o;
+            for (int i = 0; i < item.length; i++) {
+//get the position value
+                Object val = item[i];
+//check the value is real or not byte
+                if (val instanceof byte[]) {
+                    continue;
+                }
+                GXDLMSObject it = pg.getCaptureObjects().get(i).getKey();
+                if (it instanceof GXDLMSExtendedRegister) {
+                    //System.out.println(((GXDLMSExtendedRegister) it).getCaptureTime());
+                    //TODO:we have issue on reading extendedRegister value
+                } else if (it instanceof GXDLMSRegister) {
+                    String unit = "";//unitDefinitions.get(((GXDLMSRegister) it).getUnit().getValue());
+                    Number number = (Number) val;
+                    MeterData m = new MeterData(serial, timeStamp, it.getLogicalName(), number.doubleValue(), unit, objectsDefinitions.get(it.getLogicalName()).isScale());
+                    m.setName(objectsDefinitions.get(it.getLogicalName()).getName());
+                    System.out.println("Register: ");
+                    System.out.print(it.toString());
+                    System.out.println();
+                    dataList.add(m);
+                } else if (it instanceof GXDLMSClock) {
+                    timeStamp = ((GXDateTime) val).getCalendar().getTime();
+                    MeterData m = new MeterData(serial, timeStamp, it.getLogicalName());
+                    m.setName(objectsDefinitions.get(it.getLogicalName()).getName());
+                    dataList.add(m);
+                } else if (it instanceof GXDLMSData) {
+                    Number number = (Number) val;
+                    MeterData m = new MeterData(serial, timeStamp, it.getLogicalName(), number.doubleValue());
+                    m.setName(objectsDefinitions.get(it.getLogicalName()).getName());
+                    dataList.add(m);
+                } else if (it instanceof GXDLMSDisconnectControl) {
+                    MeterData m = new MeterData(serial, timeStamp, it.getLogicalName(), ((Boolean) val) ? 1 : 0);
+                    m.setName(objectsDefinitions.get(it.getLogicalName()).getName());
+                    dataList.add(m);
+                } else if (it instanceof GXDLMSLimiter) {
+                    //TODO:we have issue on reading gXDLMSLimiter value
+                } else {
+                    System.out.println("None");
+                    System.out.println(it);
+                }
+            }
+            if (is_ct) {
+                for (MeterData meterData : dataList) {
+                    if (objectsDefinitions.get(meterData.getObis()).isCt()) {
+                        meterData.setValue(meterData.getValue() * ct);
+                    } else if (objectsDefinitions.get(meterData.getObis()).isVt()) {
+                        meterData.setValue(meterData.getValue() * vt);
+                    }
+                }
+                if (type.equals("DEMAND")) {
+                    // Helper.calculatePowers(dataList);
+                }
+            }
+            meterDataList.add(dataList);
+        }
+        if (meterDataList.isEmpty()) {
+            System.out.println("No data found");
+        } else {
+
+            System.out.println(meterDataList);
+        }
+    }
+
+}
